@@ -5,7 +5,7 @@
 #include "Heap.h"
 
 
-//inputData[]¸¦ ÀÔ·Â¹Ş¾Æ ÃÖ´ëÈüÆ®¸®¸¦ »ı¼ºÇÏ´Â ÇÔ¼ö
+//inputData[]ë¥¼ ì…ë ¥ë°›ì•„ ìµœëŒ€í™íŠ¸ë¦¬ë¥¼ ìƒì„±í•˜ëŠ” í•¨ìˆ˜
 TreeNode* generateMaxHeapTree(int inputData[], int size) {
     TreeNode* root = (TreeNode*)malloc(sizeof(TreeNode));
     for (int i = 0; i < size; i++) {
@@ -16,10 +16,10 @@ TreeNode* generateMaxHeapTree(int inputData[], int size) {
     return root;
 }
 
- //±âº» inputData[]·Î »ı¼ºÇÑ Æ®¸®¸¦ Ãâ·ÂÇÏÁö ¾Ê°í ³ëµå¸¦ Ãß°¡ÇÏ´Â ÇÔ¼öÀÓ
+ //ê¸°ë³¸ inputData[]ë¡œ ìƒì„±í•œ íŠ¸ë¦¬ë¥¼ ì¶œë ¥í•˜ì§€ ì•Šê³  ë…¸ë“œë¥¼ ì¶”ê°€í•˜ëŠ” í•¨ìˆ˜ì„
 void InsertMaxHeapTreeSilent(HeapType* h, element item) {
     if (is_full_heap(h)) {
-        printf("ÈüÀÌ °¡µæ Ã¡½À´Ï´Ù. ³ëµå¸¦ Ãß°¡ÇÒ ¼ö ¾ø½À´Ï´Ù.\n");
+        printf("í™ì´ ê°€ë“ ì°¼ìŠµë‹ˆë‹¤. ë…¸ë“œë¥¼ ì¶”ê°€í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n");
         return;
     }
 
@@ -33,26 +33,26 @@ void InsertMaxHeapTreeSilent(HeapType* h, element item) {
     h->heap[i] = item;
 }
 
-//¼±ÅÃÁö¸¦ ÇÁ¸°Æ® ÇÏ°í switch¹®À¸·Î ¿øÇÏ´Â ±â´ÉÀ» ±¸ÇöÇÏ´Â ÇÔ¼ö
+//ì„ íƒì§€ë¥¼ í”„ë¦°íŠ¸ í•˜ê³  switchë¬¸ìœ¼ë¡œ ì›í•˜ëŠ” ê¸°ëŠ¥ì„ êµ¬í˜„í•˜ëŠ” í•¨ìˆ˜
 void runUserInterface(HeapType* root) {
     while (true) {
         for (int i = 0; i < 15; i++) {
-            printf("¤Ñ");
+            printf("ã…¡");
         }
         printf("\n");
-        printf("| i   : ³ëµåÃß°¡        |\n");
-        printf("| d   : ³ëµå»èÁ¦        |\n");
-        printf("| p   : ·¹º§º° Ãâ·Â     |\n");
-        printf("| c   : Á¾·á            |\n");
+        printf("| i   : ë…¸ë“œì¶”ê°€        |\n");
+        printf("| d   : ë…¸ë“œì‚­ì œ        |\n");
+        printf("| p   : ë ˆë²¨ë³„ ì¶œë ¥     |\n");
+        printf("| c   : ì¢…ë£Œ            |\n");
         for (int i = 0; i < 15; i++) {
-            printf("¤Ñ");
+            printf("ã…¡");
         }
-        printf("\n¸Ş´º ÀÔ·Â: ");
+        printf("\në©”ë‰´ ì…ë ¥: ");
         char select;
         scanf_s(" %c", &select);
         switch (select) {
         case 'i':
-            printf("Ãß°¡ÇÒ °ª ÀÔ·Â: ");
+            printf("ì¶”ê°€í•  ê°’ ì…ë ¥: ");
             int insert;
             scanf_s("%d", &insert);
             element item;
@@ -66,9 +66,9 @@ void runUserInterface(HeapType* root) {
             display_heap(root);
             break;
         case 'c':
-            return;
+            exit(1);
         default:
-            printf("Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù.\n");
+            printf("ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤.\n");
             break;
         }
     }
@@ -76,7 +76,7 @@ void runUserInterface(HeapType* root) {
 
 element delete_heap(HeapType* h) {
     if (is_empty_heap(h)) {
-        printf("ÈüÀÌ ºñ¾îÀÖ½À´Ï´Ù. »èÁ¦ÇÒ ¼ö ¾ø½À´Ï´Ù.\n");
+        printf("í™ì´ ë¹„ì–´ìˆìŠµë‹ˆë‹¤. ì‚­ì œí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n");
         element empty = { 0 };
         return empty;
     }
@@ -93,7 +93,7 @@ element delete_heap(HeapType* h) {
         if ((child < h->heap_size) && (h->heap[child].key < h->heap[child + 1].key)) {
             child++;
         }
-        for (int j = 2; j <= h->heap_size + 1; j++) { // 1¹ø ÀÎµ¦½º´Â Á¦¿Ü
+        for (int j = 2; j <= h->heap_size + 1; j++) { // 1ë²ˆ ì¸ë±ìŠ¤ëŠ” ì œì™¸
             if (j == child) {
                 printf("%d ", temp.key);
             }
@@ -109,8 +109,8 @@ element delete_heap(HeapType* h) {
     }
     h->heap[parent] = temp;
 
-    // ¸¶Áö¸·À» Á¦°ÅÇÏ°í ÇÁ¸°Æ®
-    for (int j = 2; j <= h->heap_size + 1; j++) { // 1¹ø ÀÎµ¦½º´Â Á¦¿Ü
+    // ë§ˆì§€ë§‰ì„ ì œê±°í•˜ê³  í”„ë¦°íŠ¸
+    for (int j = 2; j <= h->heap_size + 1; j++) { // 1ë²ˆ ì¸ë±ìŠ¤ëŠ” ì œì™¸
         if (j == parent) {
             printf("%d ", temp.key);
         }
@@ -120,11 +120,11 @@ element delete_heap(HeapType* h) {
     }
     printf("\n");
 
-    // »çÀÌÁî°¡ 1°³ ÁÙ¾îµç »óÅÂ·Î ´Ù½Ã ÇÁ¸°Æ®
-    for (int j = 2; j <= h->heap_size; j++) { // 1¹ø ÀÎµ¦½º´Â Á¦¿Ü
+    // ì‚¬ì´ì¦ˆê°€ 1ê°œ ì¤„ì–´ë“  ìƒíƒœë¡œ ë‹¤ì‹œ í”„ë¦°íŠ¸
+    for (int j = 2; j <= h->heap_size; j++) { // 1ë²ˆ ì¸ë±ìŠ¤ëŠ” ì œì™¸
         printf("%d ", h->heap[j].key);
     }
-    printf("\n³ëµå°¡ ÀÌµ¿µÈ È½¼ö: %d\n", move_count);
+    printf("\në…¸ë“œê°€ ì´ë™ëœ íšŸìˆ˜: %d\n", move_count);
 
     return item;
 }
@@ -152,10 +152,10 @@ int is_full_heap(HeapType* h) {
 
 }
 
-//runUserInterface¿¡¼­ ÀÔ·Â¹ŞÀº °ªÀ» Èü¿¡ Ãß°¡ÇÏ¸ç Æ®¸®ÀÇ ÀÌµ¿À» ÇÁ¸°Æ® ÇÏ´Â ÇÔ¼ö
+//runUserInterfaceì—ì„œ ì…ë ¥ë°›ì€ ê°’ì„ í™ì— ì¶”ê°€í•˜ë©° íŠ¸ë¦¬ì˜ ì´ë™ì„ í”„ë¦°íŠ¸ í•˜ëŠ” í•¨ìˆ˜
 void InsertMaxHeapTree(HeapType* h, element item) {
     if (is_full_heap(h)) {
-        printf("ÈüÀÌ °¡µæ Ã¡½À´Ï´Ù. ³ëµå¸¦ Ãß°¡ÇÒ ¼ö ¾ø½À´Ï´Ù.\n");
+        printf("í™ì´ ê°€ë“ ì°¼ìŠµë‹ˆë‹¤. ë…¸ë“œë¥¼ ì¶”ê°€í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n");
         return;
     }
 
@@ -188,7 +188,7 @@ void InsertMaxHeapTree(HeapType* h, element item) {
             printf("%d ", h->heap[j].key);
         }
     }
-    printf("\n³ëµå°¡ ÀÌµ¿µÈ È½¼ö: %d\n", move_count);
+    printf("\në…¸ë“œê°€ ì´ë™ëœ íšŸìˆ˜: %d\n", move_count);
  }
 
 
@@ -197,9 +197,9 @@ element find_heap(HeapType* h) {
     return h->heap[1];
 }
 
-//ÈüÀ» ·¹º§º°·Î Ãâ·ÂÇÏ´Â ÇÔ¼ö
+//í™ì„ ë ˆë²¨ë³„ë¡œ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜
 void display_heap(HeapType* h) {
-    printf("Æ®¸® ·¹º§º° Ãâ·Â\n");
+    printf("íŠ¸ë¦¬ ë ˆë²¨ë³„ ì¶œë ¥\n");
 
     int index = 1;
     int level = 1;
