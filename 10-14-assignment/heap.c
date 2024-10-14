@@ -16,7 +16,7 @@ TreeNode* generateMaxHeapTree(int inputData[], int size) {
     return root;
 }
 
-//기본 inputData[]로 생성한 트리를 출력하지 않고 노드를 추가하는 함수
+ //기본 inputData[]로 생성한 트리를 출력하지 않고 노드를 추가하는 함수임
 void InsertMaxHeapTreeSilent(HeapType* h, element item) {
     if (is_full_heap(h)) {
         printf("힙이 가득 찼습니다. 노드를 추가할 수 없습니다.\n");
