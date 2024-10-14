@@ -189,7 +189,7 @@ void InsertMaxHeapTree(HeapType* h, element item) {
         }
     }
     printf("\n노드가 이동된 횟수: %d\n", move_count);
-}
+ }
 
 
 
